@@ -1,0 +1,14 @@
+.form{
+    width: 800px;
+    height: 200px;
+    border: 1px solid black;
+    margin: 20px auto;
+    padding: 20px;
+}
+h1{
+    text-align: center;
+    color: blue;
+}
+.input {
+    width: 500px;
+}

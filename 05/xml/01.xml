@@ -1,0 +1,6 @@
+<book>  
+        <title>Lập trình PHP</title>
+        <authour>ZendVN</authour>
+        <pages>500</pages>
+        <weight class = "gram">500</weight>   
+</book>
