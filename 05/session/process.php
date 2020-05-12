@@ -13,8 +13,7 @@
         if(isset($_SESSION['flag']) && $_SESSION['flag'] == true)
         {
             if( $_SESSION['fullName'] == 'admin' )
-            {
-                
+            {          
                 echo '<h3>Xin chào: '.$_SESSION['fullName'].'</h3>';
                 echo '<h3>Mật khẩu: '.$_SESSION['password'].' </h3>';
                 echo '<input  type="number" name = "time" value = "">' ;
@@ -32,48 +31,49 @@
         {
             if(isset($_POST['username']) && isset($_POST['password']))
             {
-                $username  = $_POST['username'] ;
-                $password  = md5($_POST['password']);
-                $file = parse_ini_file('file.ini') ;
-                $userInfo= explode('|',$file[$username]) ;// tách chuối thàng mảng.
-                if($userInfo[0] == $username && $userInfo[1] == $password)
+                echo $username  = $_POST['username'] ;
+                $password       =  ($_POST['password']);
+                $file = file_get_contents('user.json') ;
+                $JSON = json_decode($file,true) ;
+                foreach($JSON as $key => $value)
                 {
-                    if($username == 'admin')
+                    foreach($value as $keyOne =>$valueOne)
                     {   
-                        if(isset($_GET['time']) && isset($_GET['sumbitTime']))
-                        {
-                            echo $_SESSION['timeout'] = $_GET['time'];
-                        }           
-                        $_SESSION['fullName'] 		= $userInfo[0];
-                        $_SESSION['password']       = $userInfo[1]; 
-                        $_SESSION['flag']           = true;
-                        // $_SESSION['timeout'] 		= time();	
-                        echo '<h3>Xin chào: '.$_SESSION['fullName'].'</h3>';
-                        echo '<h3>Mật khẩu: '.$_SESSION['password'].' </h3>';
-                    ?>
-                        <form action="" method="GET">
-                        <input  type="number" name = "time" value = "">
-                        <input  type="button" name = "submitTime" value ="Save" >
-                        </form>
-                    <?php
-                      
-                        echo "</br>";
-                        echo '<a href="logout.php">Đăng xuất</a>';      
+                        echo "<pre>" ;
+                        print_r($$valueOne['username']) ;
+                        echo "</pre>" ;  
+                        echo "<pre>" ;
+                        print_r($$valueOne['password']) ;
+                        echo "</pre>" ; 
+                        // if($valueOne['username'] == $username &&  $valueOne['password'] == $password)
+                        // {
+                        //     if($username == 'admin')
+                        //     {      
+                        //         $_SESSION['fullName'] 		= $valueOne['fullname'];
+                        //         $_SESSION['password']       =  $valueOne['password']; 
+                        //         $_SESSION['flag']           = true;
+                        //         // $_SESSION['timeout'] 		= time();	
+                        //         echo '<h3>Xin chào: '.$_SESSION['fullName'].'</h3>';
+                        //         echo '<h3>Mật khẩu: '.$_SESSION['password'].' </h3>';             
+                        //         echo "</br>";
+                        //         echo '<a href="logout.php">Đăng xuất</a>';      
+                        //     }
+                        //     else 
+                        //     {
+                        //         $_SESSION['fullName'] 		= $valueOne['fullname'];
+                        //         $_SESSION['flag']           = true;
+                        //         // $_SESSION['timeout'] 		= time();	
+                        //         echo '<h3>Xin chào: '.$_SESSION['fullName'].'</h3>';
+                        //         echo '<a href="logout.php">Đăng xuất</a>';
+                        //     }
+                        // }
+                        // else
+                        // {
+                        //     header('location:login.php');
+                        // }    
                     }
-                    else 
-                    {
-                        $_SESSION['fullName'] 		= $userInfo[2];
-                        $_SESSION['flag']           = true;
-                       // $_SESSION['timeout'] 		= time();	
-                        echo '<h3>Xin chào: '.$_SESSION['fullName'].'</h3>';
-                        echo '<a href="logout.php">Đăng xuất</a>';
-                    }
-                }
-                else
-                {
-                    header('location:login.php');
-                }
-            }
+                }    
+            }        
             else
             {
                 header('location:login.php');

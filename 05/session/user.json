@@ -1,0 +1,4 @@
+{ "login":[
+        {"username":"admin","password":"123456","fullname":"Lê Trương Định"},
+        {"username":"tiki", "password":"654321","fullname":"TiKi"}         
+]}
